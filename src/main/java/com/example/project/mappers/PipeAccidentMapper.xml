@@ -1,0 +1,922 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.project.mappers.PipeAccidentMapper" >
+  <resultMap id="BaseResultMap" type="com.example.project.entity.PipeAccident" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="pipeId" property="pipeid" jdbcType="VARCHAR" />
+    <result column="companyid" property="companyid" jdbcType="VARCHAR" />
+    <result column="accidentType" property="accidenttype" jdbcType="VARCHAR" />
+    <result column="occurrenceTime" property="occurrencetime" jdbcType="VARCHAR" />
+    <result column="occurrenceSite" property="occurrencesite" jdbcType="VARCHAR" />
+    <result column="accidentProcess" property="accidentprocess" jdbcType="VARCHAR" />
+    <result column="loss" property="loss" jdbcType="VARCHAR" />
+    <result column="personnelInjury" property="personnelinjury" jdbcType="VARCHAR" />
+    <result column="economicLosses" property="economiclosses" jdbcType="VARCHAR" />
+    <result column="causeAccident" property="causeaccident" jdbcType="VARCHAR" />
+    <result column="accidentLiabilityParty" property="accidentliabilityparty" jdbcType="VARCHAR" />
+    <result column="reportPeo" property="reportpeo" jdbcType="VARCHAR" />
+    <result column="reportTime" property="reporttime" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="accidentSummary" property="accidentsummary" jdbcType="VARCHAR" />
+    <result column="dealingPeo" property="dealingpeo" jdbcType="VARCHAR" />
+    <result column="dealingTime" property="dealingtime" jdbcType="VARCHAR" />
+    <result column="dealingState" property="dealingstate" jdbcType="VARCHAR" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="x" property="x" jdbcType="VARCHAR" />
+    <result column="y" property="y" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="states" property="states" jdbcType="VARCHAR" />
+    <result column="deal" property="deal" jdbcType="VARCHAR" />
+    <result column="opinion" property="opinion" jdbcType="VARCHAR" />
+    <result column="dealPeople" property="dealpeople" jdbcType="VARCHAR" />
+    <result column="dealTime" property="dealtime" jdbcType="VARCHAR" />
+    <result column="completeTime" property="completetime" jdbcType="VARCHAR" />
+    <result column="contents" property="contents" jdbcType="VARCHAR" />
+    <result column="usercodeid" property="usercodeid" jdbcType="VARCHAR" />
+    <result column="pipepartid" property="pipepartid" jdbcType="VARCHAR" />
+    <result column="accidentLevel" property="accidentlevel" jdbcType="VARCHAR" />
+    <result column="uploadPeople" property="uploadpeople" jdbcType="VARCHAR" />
+    <result column="uploadTime" property="uploadtime" jdbcType="VARCHAR" />
+    <result column="fileurl" property="fileurl" jdbcType="VARCHAR" />
+    <result column="filename" property="filename" jdbcType="VARCHAR" />
+    <result column="userid" property="userid" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="VARCHAR" />
+    <result column="createname" property="createname" jdbcType="VARCHAR" />
+    <result column="companyName" property="companyname" jdbcType="VARCHAR" />
+    <result column="pipeName" property="pipename" jdbcType="VARCHAR" />
+    <result column="orgid" property="orgid" jdbcType="VARCHAR" />
+    <result column="pipepartName" property="pipepartname" jdbcType="VARCHAR" />
+    <result column="taskid" property="taskid" jdbcType="VARCHAR" />
+    <result column="taskname" property="taskname" jdbcType="VARCHAR" />
+    <result column="reportid" property="reportid" jdbcType="VARCHAR" />
+    <result column="reportcontent" property="reportcontent" jdbcType="VARCHAR" />
+    <result column="taskreportid" property="taskreportid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, pipeId, companyid, accidentType, occurrenceTime, occurrenceSite, accidentProcess, 
+    loss, personnelInjury, economicLosses, causeAccident, accidentLiabilityParty, reportPeo, 
+    reportTime, phone, accidentSummary, dealingPeo, dealingTime, dealingState, note, 
+    x, y, state, states, deal, opinion, dealPeople, dealTime, completeTime, contents, 
+    usercodeid, pipepartid, accidentLevel, uploadPeople, uploadTime, fileurl, filename, 
+    userid, status, createTime, createname, companyName, pipeName, orgid, pipepartName, 
+    taskid, taskname, reportid, reportcontent, taskreportid
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.project.entity.PipeAccidentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pipe_accident
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pipe_accident
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pipe_accident
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.project.entity.PipeAccidentExample" >
+    delete from pipe_accident
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.project.entity.PipeAccident" >
+    insert into pipe_accident (id, pipeId, companyid, 
+      accidentType, occurrenceTime, occurrenceSite, 
+      accidentProcess, loss, personnelInjury, 
+      economicLosses, causeAccident, accidentLiabilityParty, 
+      reportPeo, reportTime, phone, 
+      accidentSummary, dealingPeo, dealingTime, 
+      dealingState, note, x, 
+      y, state, states, deal, 
+      opinion, dealPeople, dealTime, 
+      completeTime, contents, usercodeid, 
+      pipepartid, accidentLevel, uploadPeople, 
+      uploadTime, fileurl, filename, 
+      userid, status, createTime, 
+      createname, companyName, pipeName, 
+      orgid, pipepartName, taskid, 
+      taskname, reportid, reportcontent, 
+      taskreportid)
+    values (#{id,jdbcType=BIGINT}, #{pipeid,jdbcType=VARCHAR}, #{companyid,jdbcType=VARCHAR}, 
+      #{accidenttype,jdbcType=VARCHAR}, #{occurrencetime,jdbcType=VARCHAR}, #{occurrencesite,jdbcType=VARCHAR}, 
+      #{accidentprocess,jdbcType=VARCHAR}, #{loss,jdbcType=VARCHAR}, #{personnelinjury,jdbcType=VARCHAR}, 
+      #{economiclosses,jdbcType=VARCHAR}, #{causeaccident,jdbcType=VARCHAR}, #{accidentliabilityparty,jdbcType=VARCHAR}, 
+      #{reportpeo,jdbcType=VARCHAR}, #{reporttime,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{accidentsummary,jdbcType=VARCHAR}, #{dealingpeo,jdbcType=VARCHAR}, #{dealingtime,jdbcType=VARCHAR}, 
+      #{dealingstate,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{x,jdbcType=VARCHAR}, 
+      #{y,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{states,jdbcType=VARCHAR}, #{deal,jdbcType=VARCHAR}, 
+      #{opinion,jdbcType=VARCHAR}, #{dealpeople,jdbcType=VARCHAR}, #{dealtime,jdbcType=VARCHAR}, 
+      #{completetime,jdbcType=VARCHAR}, #{contents,jdbcType=VARCHAR}, #{usercodeid,jdbcType=VARCHAR}, 
+      #{pipepartid,jdbcType=VARCHAR}, #{accidentlevel,jdbcType=VARCHAR}, #{uploadpeople,jdbcType=VARCHAR}, 
+      #{uploadtime,jdbcType=VARCHAR}, #{fileurl,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, 
+      #{createname,jdbcType=VARCHAR}, #{companyname,jdbcType=VARCHAR}, #{pipename,jdbcType=VARCHAR}, 
+      #{orgid,jdbcType=VARCHAR}, #{pipepartname,jdbcType=VARCHAR}, #{taskid,jdbcType=VARCHAR}, 
+      #{taskname,jdbcType=VARCHAR}, #{reportid,jdbcType=VARCHAR}, #{reportcontent,jdbcType=VARCHAR}, 
+      #{taskreportid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.project.entity.PipeAccident" >
+    insert into pipe_accident
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="pipeid != null" >
+        pipeId,
+      </if>
+      <if test="companyid != null" >
+        companyid,
+      </if>
+      <if test="accidenttype != null" >
+        accidentType,
+      </if>
+      <if test="occurrencetime != null" >
+        occurrenceTime,
+      </if>
+      <if test="occurrencesite != null" >
+        occurrenceSite,
+      </if>
+      <if test="accidentprocess != null" >
+        accidentProcess,
+      </if>
+      <if test="loss != null" >
+        loss,
+      </if>
+      <if test="personnelinjury != null" >
+        personnelInjury,
+      </if>
+      <if test="economiclosses != null" >
+        economicLosses,
+      </if>
+      <if test="causeaccident != null" >
+        causeAccident,
+      </if>
+      <if test="accidentliabilityparty != null" >
+        accidentLiabilityParty,
+      </if>
+      <if test="reportpeo != null" >
+        reportPeo,
+      </if>
+      <if test="reporttime != null" >
+        reportTime,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="accidentsummary != null" >
+        accidentSummary,
+      </if>
+      <if test="dealingpeo != null" >
+        dealingPeo,
+      </if>
+      <if test="dealingtime != null" >
+        dealingTime,
+      </if>
+      <if test="dealingstate != null" >
+        dealingState,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="x != null" >
+        x,
+      </if>
+      <if test="y != null" >
+        y,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="states != null" >
+        states,
+      </if>
+      <if test="deal != null" >
+        deal,
+      </if>
+      <if test="opinion != null" >
+        opinion,
+      </if>
+      <if test="dealpeople != null" >
+        dealPeople,
+      </if>
+      <if test="dealtime != null" >
+        dealTime,
+      </if>
+      <if test="completetime != null" >
+        completeTime,
+      </if>
+      <if test="contents != null" >
+        contents,
+      </if>
+      <if test="usercodeid != null" >
+        usercodeid,
+      </if>
+      <if test="pipepartid != null" >
+        pipepartid,
+      </if>
+      <if test="accidentlevel != null" >
+        accidentLevel,
+      </if>
+      <if test="uploadpeople != null" >
+        uploadPeople,
+      </if>
+      <if test="uploadtime != null" >
+        uploadTime,
+      </if>
+      <if test="fileurl != null" >
+        fileurl,
+      </if>
+      <if test="filename != null" >
+        filename,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="createname != null" >
+        createname,
+      </if>
+      <if test="companyname != null" >
+        companyName,
+      </if>
+      <if test="pipename != null" >
+        pipeName,
+      </if>
+      <if test="orgid != null" >
+        orgid,
+      </if>
+      <if test="pipepartname != null" >
+        pipepartName,
+      </if>
+      <if test="taskid != null" >
+        taskid,
+      </if>
+      <if test="taskname != null" >
+        taskname,
+      </if>
+      <if test="reportid != null" >
+        reportid,
+      </if>
+      <if test="reportcontent != null" >
+        reportcontent,
+      </if>
+      <if test="taskreportid != null" >
+        taskreportid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="pipeid != null" >
+        #{pipeid,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null" >
+        #{companyid,jdbcType=VARCHAR},
+      </if>
+      <if test="accidenttype != null" >
+        #{accidenttype,jdbcType=VARCHAR},
+      </if>
+      <if test="occurrencetime != null" >
+        #{occurrencetime,jdbcType=VARCHAR},
+      </if>
+      <if test="occurrencesite != null" >
+        #{occurrencesite,jdbcType=VARCHAR},
+      </if>
+      <if test="accidentprocess != null" >
+        #{accidentprocess,jdbcType=VARCHAR},
+      </if>
+      <if test="loss != null" >
+        #{loss,jdbcType=VARCHAR},
+      </if>
+      <if test="personnelinjury != null" >
+        #{personnelinjury,jdbcType=VARCHAR},
+      </if>
+      <if test="economiclosses != null" >
+        #{economiclosses,jdbcType=VARCHAR},
+      </if>
+      <if test="causeaccident != null" >
+        #{causeaccident,jdbcType=VARCHAR},
+      </if>
+      <if test="accidentliabilityparty != null" >
+        #{accidentliabilityparty,jdbcType=VARCHAR},
+      </if>
+      <if test="reportpeo != null" >
+        #{reportpeo,jdbcType=VARCHAR},
+      </if>
+      <if test="reporttime != null" >
+        #{reporttime,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="accidentsummary != null" >
+        #{accidentsummary,jdbcType=VARCHAR},
+      </if>
+      <if test="dealingpeo != null" >
+        #{dealingpeo,jdbcType=VARCHAR},
+      </if>
+      <if test="dealingtime != null" >
+        #{dealingtime,jdbcType=VARCHAR},
+      </if>
+      <if test="dealingstate != null" >
+        #{dealingstate,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="x != null" >
+        #{x,jdbcType=VARCHAR},
+      </if>
+      <if test="y != null" >
+        #{y,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="states != null" >
+        #{states,jdbcType=VARCHAR},
+      </if>
+      <if test="deal != null" >
+        #{deal,jdbcType=VARCHAR},
+      </if>
+      <if test="opinion != null" >
+        #{opinion,jdbcType=VARCHAR},
+      </if>
+      <if test="dealpeople != null" >
+        #{dealpeople,jdbcType=VARCHAR},
+      </if>
+      <if test="dealtime != null" >
+        #{dealtime,jdbcType=VARCHAR},
+      </if>
+      <if test="completetime != null" >
+        #{completetime,jdbcType=VARCHAR},
+      </if>
+      <if test="contents != null" >
+        #{contents,jdbcType=VARCHAR},
+      </if>
+      <if test="usercodeid != null" >
+        #{usercodeid,jdbcType=VARCHAR},
+      </if>
+      <if test="pipepartid != null" >
+        #{pipepartid,jdbcType=VARCHAR},
+      </if>
+      <if test="accidentlevel != null" >
+        #{accidentlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadpeople != null" >
+        #{uploadpeople,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadtime != null" >
+        #{uploadtime,jdbcType=VARCHAR},
+      </if>
+      <if test="fileurl != null" >
+        #{fileurl,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null" >
+        #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="createname != null" >
+        #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="companyname != null" >
+        #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="pipename != null" >
+        #{pipename,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=VARCHAR},
+      </if>
+      <if test="pipepartname != null" >
+        #{pipepartname,jdbcType=VARCHAR},
+      </if>
+      <if test="taskid != null" >
+        #{taskid,jdbcType=VARCHAR},
+      </if>
+      <if test="taskname != null" >
+        #{taskname,jdbcType=VARCHAR},
+      </if>
+      <if test="reportid != null" >
+        #{reportid,jdbcType=VARCHAR},
+      </if>
+      <if test="reportcontent != null" >
+        #{reportcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="taskreportid != null" >
+        #{taskreportid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.project.entity.PipeAccidentExample" resultType="java.lang.Integer" >
+    select count(*) from pipe_accident
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update pipe_accident
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.pipeid != null" >
+        pipeId = #{record.pipeid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyid != null" >
+        companyid = #{record.companyid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accidenttype != null" >
+        accidentType = #{record.accidenttype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.occurrencetime != null" >
+        occurrenceTime = #{record.occurrencetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.occurrencesite != null" >
+        occurrenceSite = #{record.occurrencesite,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accidentprocess != null" >
+        accidentProcess = #{record.accidentprocess,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loss != null" >
+        loss = #{record.loss,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personnelinjury != null" >
+        personnelInjury = #{record.personnelinjury,jdbcType=VARCHAR},
+      </if>
+      <if test="record.economiclosses != null" >
+        economicLosses = #{record.economiclosses,jdbcType=VARCHAR},
+      </if>
+      <if test="record.causeaccident != null" >
+        causeAccident = #{record.causeaccident,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accidentliabilityparty != null" >
+        accidentLiabilityParty = #{record.accidentliabilityparty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reportpeo != null" >
+        reportPeo = #{record.reportpeo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reporttime != null" >
+        reportTime = #{record.reporttime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accidentsummary != null" >
+        accidentSummary = #{record.accidentsummary,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dealingpeo != null" >
+        dealingPeo = #{record.dealingpeo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dealingtime != null" >
+        dealingTime = #{record.dealingtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dealingstate != null" >
+        dealingState = #{record.dealingstate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.note != null" >
+        note = #{record.note,jdbcType=VARCHAR},
+      </if>
+      <if test="record.x != null" >
+        x = #{record.x,jdbcType=VARCHAR},
+      </if>
+      <if test="record.y != null" >
+        y = #{record.y,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.states != null" >
+        states = #{record.states,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deal != null" >
+        deal = #{record.deal,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opinion != null" >
+        opinion = #{record.opinion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dealpeople != null" >
+        dealPeople = #{record.dealpeople,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dealtime != null" >
+        dealTime = #{record.dealtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.completetime != null" >
+        completeTime = #{record.completetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contents != null" >
+        contents = #{record.contents,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usercodeid != null" >
+        usercodeid = #{record.usercodeid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pipepartid != null" >
+        pipepartid = #{record.pipepartid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accidentlevel != null" >
+        accidentLevel = #{record.accidentlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uploadpeople != null" >
+        uploadPeople = #{record.uploadpeople,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uploadtime != null" >
+        uploadTime = #{record.uploadtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fileurl != null" >
+        fileurl = #{record.fileurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.filename != null" >
+        filename = #{record.filename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userid != null" >
+        userid = #{record.userid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createname != null" >
+        createname = #{record.createname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyname != null" >
+        companyName = #{record.companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pipename != null" >
+        pipeName = #{record.pipename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgid != null" >
+        orgid = #{record.orgid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pipepartname != null" >
+        pipepartName = #{record.pipepartname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskid != null" >
+        taskid = #{record.taskid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskname != null" >
+        taskname = #{record.taskname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reportid != null" >
+        reportid = #{record.reportid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reportcontent != null" >
+        reportcontent = #{record.reportcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskreportid != null" >
+        taskreportid = #{record.taskreportid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update pipe_accident
+    set id = #{record.id,jdbcType=BIGINT},
+      pipeId = #{record.pipeid,jdbcType=VARCHAR},
+      companyid = #{record.companyid,jdbcType=VARCHAR},
+      accidentType = #{record.accidenttype,jdbcType=VARCHAR},
+      occurrenceTime = #{record.occurrencetime,jdbcType=VARCHAR},
+      occurrenceSite = #{record.occurrencesite,jdbcType=VARCHAR},
+      accidentProcess = #{record.accidentprocess,jdbcType=VARCHAR},
+      loss = #{record.loss,jdbcType=VARCHAR},
+      personnelInjury = #{record.personnelinjury,jdbcType=VARCHAR},
+      economicLosses = #{record.economiclosses,jdbcType=VARCHAR},
+      causeAccident = #{record.causeaccident,jdbcType=VARCHAR},
+      accidentLiabilityParty = #{record.accidentliabilityparty,jdbcType=VARCHAR},
+      reportPeo = #{record.reportpeo,jdbcType=VARCHAR},
+      reportTime = #{record.reporttime,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      accidentSummary = #{record.accidentsummary,jdbcType=VARCHAR},
+      dealingPeo = #{record.dealingpeo,jdbcType=VARCHAR},
+      dealingTime = #{record.dealingtime,jdbcType=VARCHAR},
+      dealingState = #{record.dealingstate,jdbcType=VARCHAR},
+      note = #{record.note,jdbcType=VARCHAR},
+      x = #{record.x,jdbcType=VARCHAR},
+      y = #{record.y,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=VARCHAR},
+      states = #{record.states,jdbcType=VARCHAR},
+      deal = #{record.deal,jdbcType=VARCHAR},
+      opinion = #{record.opinion,jdbcType=VARCHAR},
+      dealPeople = #{record.dealpeople,jdbcType=VARCHAR},
+      dealTime = #{record.dealtime,jdbcType=VARCHAR},
+      completeTime = #{record.completetime,jdbcType=VARCHAR},
+      contents = #{record.contents,jdbcType=VARCHAR},
+      usercodeid = #{record.usercodeid,jdbcType=VARCHAR},
+      pipepartid = #{record.pipepartid,jdbcType=VARCHAR},
+      accidentLevel = #{record.accidentlevel,jdbcType=VARCHAR},
+      uploadPeople = #{record.uploadpeople,jdbcType=VARCHAR},
+      uploadTime = #{record.uploadtime,jdbcType=VARCHAR},
+      fileurl = #{record.fileurl,jdbcType=VARCHAR},
+      filename = #{record.filename,jdbcType=VARCHAR},
+      userid = #{record.userid,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      createTime = #{record.createtime,jdbcType=VARCHAR},
+      createname = #{record.createname,jdbcType=VARCHAR},
+      companyName = #{record.companyname,jdbcType=VARCHAR},
+      pipeName = #{record.pipename,jdbcType=VARCHAR},
+      orgid = #{record.orgid,jdbcType=VARCHAR},
+      pipepartName = #{record.pipepartname,jdbcType=VARCHAR},
+      taskid = #{record.taskid,jdbcType=VARCHAR},
+      taskname = #{record.taskname,jdbcType=VARCHAR},
+      reportid = #{record.reportid,jdbcType=VARCHAR},
+      reportcontent = #{record.reportcontent,jdbcType=VARCHAR},
+      taskreportid = #{record.taskreportid,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.project.entity.PipeAccident" >
+    update pipe_accident
+    <set >
+      <if test="pipeid != null" >
+        pipeId = #{pipeid,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null" >
+        companyid = #{companyid,jdbcType=VARCHAR},
+      </if>
+      <if test="accidenttype != null" >
+        accidentType = #{accidenttype,jdbcType=VARCHAR},
+      </if>
+      <if test="occurrencetime != null" >
+        occurrenceTime = #{occurrencetime,jdbcType=VARCHAR},
+      </if>
+      <if test="occurrencesite != null" >
+        occurrenceSite = #{occurrencesite,jdbcType=VARCHAR},
+      </if>
+      <if test="accidentprocess != null" >
+        accidentProcess = #{accidentprocess,jdbcType=VARCHAR},
+      </if>
+      <if test="loss != null" >
+        loss = #{loss,jdbcType=VARCHAR},
+      </if>
+      <if test="personnelinjury != null" >
+        personnelInjury = #{personnelinjury,jdbcType=VARCHAR},
+      </if>
+      <if test="economiclosses != null" >
+        economicLosses = #{economiclosses,jdbcType=VARCHAR},
+      </if>
+      <if test="causeaccident != null" >
+        causeAccident = #{causeaccident,jdbcType=VARCHAR},
+      </if>
+      <if test="accidentliabilityparty != null" >
+        accidentLiabilityParty = #{accidentliabilityparty,jdbcType=VARCHAR},
+      </if>
+      <if test="reportpeo != null" >
+        reportPeo = #{reportpeo,jdbcType=VARCHAR},
+      </if>
+      <if test="reporttime != null" >
+        reportTime = #{reporttime,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="accidentsummary != null" >
+        accidentSummary = #{accidentsummary,jdbcType=VARCHAR},
+      </if>
+      <if test="dealingpeo != null" >
+        dealingPeo = #{dealingpeo,jdbcType=VARCHAR},
+      </if>
+      <if test="dealingtime != null" >
+        dealingTime = #{dealingtime,jdbcType=VARCHAR},
+      </if>
+      <if test="dealingstate != null" >
+        dealingState = #{dealingstate,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="x != null" >
+        x = #{x,jdbcType=VARCHAR},
+      </if>
+      <if test="y != null" >
+        y = #{y,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="states != null" >
+        states = #{states,jdbcType=VARCHAR},
+      </if>
+      <if test="deal != null" >
+        deal = #{deal,jdbcType=VARCHAR},
+      </if>
+      <if test="opinion != null" >
+        opinion = #{opinion,jdbcType=VARCHAR},
+      </if>
+      <if test="dealpeople != null" >
+        dealPeople = #{dealpeople,jdbcType=VARCHAR},
+      </if>
+      <if test="dealtime != null" >
+        dealTime = #{dealtime,jdbcType=VARCHAR},
+      </if>
+      <if test="completetime != null" >
+        completeTime = #{completetime,jdbcType=VARCHAR},
+      </if>
+      <if test="contents != null" >
+        contents = #{contents,jdbcType=VARCHAR},
+      </if>
+      <if test="usercodeid != null" >
+        usercodeid = #{usercodeid,jdbcType=VARCHAR},
+      </if>
+      <if test="pipepartid != null" >
+        pipepartid = #{pipepartid,jdbcType=VARCHAR},
+      </if>
+      <if test="accidentlevel != null" >
+        accidentLevel = #{accidentlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadpeople != null" >
+        uploadPeople = #{uploadpeople,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadtime != null" >
+        uploadTime = #{uploadtime,jdbcType=VARCHAR},
+      </if>
+      <if test="fileurl != null" >
+        fileurl = #{fileurl,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null" >
+        filename = #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="createname != null" >
+        createname = #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="companyname != null" >
+        companyName = #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="pipename != null" >
+        pipeName = #{pipename,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        orgid = #{orgid,jdbcType=VARCHAR},
+      </if>
+      <if test="pipepartname != null" >
+        pipepartName = #{pipepartname,jdbcType=VARCHAR},
+      </if>
+      <if test="taskid != null" >
+        taskid = #{taskid,jdbcType=VARCHAR},
+      </if>
+      <if test="taskname != null" >
+        taskname = #{taskname,jdbcType=VARCHAR},
+      </if>
+      <if test="reportid != null" >
+        reportid = #{reportid,jdbcType=VARCHAR},
+      </if>
+      <if test="reportcontent != null" >
+        reportcontent = #{reportcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="taskreportid != null" >
+        taskreportid = #{taskreportid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.project.entity.PipeAccident" >
+    update pipe_accident
+    set pipeId = #{pipeid,jdbcType=VARCHAR},
+      companyid = #{companyid,jdbcType=VARCHAR},
+      accidentType = #{accidenttype,jdbcType=VARCHAR},
+      occurrenceTime = #{occurrencetime,jdbcType=VARCHAR},
+      occurrenceSite = #{occurrencesite,jdbcType=VARCHAR},
+      accidentProcess = #{accidentprocess,jdbcType=VARCHAR},
+      loss = #{loss,jdbcType=VARCHAR},
+      personnelInjury = #{personnelinjury,jdbcType=VARCHAR},
+      economicLosses = #{economiclosses,jdbcType=VARCHAR},
+      causeAccident = #{causeaccident,jdbcType=VARCHAR},
+      accidentLiabilityParty = #{accidentliabilityparty,jdbcType=VARCHAR},
+      reportPeo = #{reportpeo,jdbcType=VARCHAR},
+      reportTime = #{reporttime,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      accidentSummary = #{accidentsummary,jdbcType=VARCHAR},
+      dealingPeo = #{dealingpeo,jdbcType=VARCHAR},
+      dealingTime = #{dealingtime,jdbcType=VARCHAR},
+      dealingState = #{dealingstate,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      x = #{x,jdbcType=VARCHAR},
+      y = #{y,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      states = #{states,jdbcType=VARCHAR},
+      deal = #{deal,jdbcType=VARCHAR},
+      opinion = #{opinion,jdbcType=VARCHAR},
+      dealPeople = #{dealpeople,jdbcType=VARCHAR},
+      dealTime = #{dealtime,jdbcType=VARCHAR},
+      completeTime = #{completetime,jdbcType=VARCHAR},
+      contents = #{contents,jdbcType=VARCHAR},
+      usercodeid = #{usercodeid,jdbcType=VARCHAR},
+      pipepartid = #{pipepartid,jdbcType=VARCHAR},
+      accidentLevel = #{accidentlevel,jdbcType=VARCHAR},
+      uploadPeople = #{uploadpeople,jdbcType=VARCHAR},
+      uploadTime = #{uploadtime,jdbcType=VARCHAR},
+      fileurl = #{fileurl,jdbcType=VARCHAR},
+      filename = #{filename,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=VARCHAR},
+      createname = #{createname,jdbcType=VARCHAR},
+      companyName = #{companyname,jdbcType=VARCHAR},
+      pipeName = #{pipename,jdbcType=VARCHAR},
+      orgid = #{orgid,jdbcType=VARCHAR},
+      pipepartName = #{pipepartname,jdbcType=VARCHAR},
+      taskid = #{taskid,jdbcType=VARCHAR},
+      taskname = #{taskname,jdbcType=VARCHAR},
+      reportid = #{reportid,jdbcType=VARCHAR},
+      reportcontent = #{reportcontent,jdbcType=VARCHAR},
+      taskreportid = #{taskreportid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
