@@ -44,7 +44,7 @@
     <!--Spring版本号-->
     <spring.version>4.0.0.RELEASE</spring.version>
     <!--MyBatis版本号-->
-    <mybatis.version>3.2.4</mybatis.version>
+    <mybatis.version>3.5.6</mybatis.version>
     <!--log4j版本号-->
     <log4j.version>1.2.16</log4j.version>
     <!--slf4j版本号-->
